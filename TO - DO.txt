@@ -1,0 +1,17 @@
+create the user_dashboard.
+    create navbar.
+        create logo, title, menu, and profile (profile button has the signout button).
+    create sidebar.
+        create Dashboard (this page show login employee data in cards), My Route (this page show the different input filds to fill data and save into database), DA Data (this is all be the links to redirect to pages according to links).
+make the login and register page.
+connect the html to xampp.
+create the database to store the data into tables.
+add the validation in login and register page.
+create the flask routes to validation and routing etc.
+use bootstrap for the css / ui.
+make the admin and user login different (asign the role in employee column to check the who is user and admin).
+create the admin_dashboard.
+    create navbar.
+        create logo, title, menu, and profile (profile button has the signout button).
+    create sidebar.
+        create Dashboard (this page show the all employee data in cards), My Employee (this page show the name of all employee and etc. details), Employee Data(the employee data will show the all employee data by default and if the name parametar will pass the data will be shown according to the parametar).
