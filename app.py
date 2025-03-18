@@ -8,7 +8,7 @@ app.secret_key = 'your_secret_key'
 # Function to connect to the database
 def get_db_connection():
     return mysql.connector.connect(
-        host='http://dpg-cvcbjlbqf0us73dehb90-a.oregon-postgres.render.com',
+        host='dpg-cvcbjlbqf0us73dehb90-a.oregon-postgres.render.com',
         user='amazon_30cp_user',
         password='rsn41fCUKKPB6A57ZuuJLEZIronofTHP',
         database='amazon_30cp'
