@@ -1,0 +1,10 @@
+pip install flask
+pip install mysql-connector-python
+
+admin:-
+username: Admin
+password: Admin@23
+
+user:-
+username: Aniket
+password: Aniket@23

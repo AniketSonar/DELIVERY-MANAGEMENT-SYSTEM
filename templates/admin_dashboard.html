@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/static/assets/img/favicon.png" rel="icon">
+  <link href="/static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/static/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="/admin_dashboard" class="logo d-flex align-items-center">
+        <img src="/static/assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">Admin</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person"></i>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{username}}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>{{username}}</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/register">
+                <i class="bi bi-person"></i>
+                <span>Create a Account</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/logout">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link " href="/admin_dashboard">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/my_employee">
+          <i class="bi bi-sign-turn-right"></i>
+          <span>My Employee</span>
+        </a>
+      </li><!-- End My Employee Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/employee_data">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <span>Employee Data</span>
+        </a>
+      </li><!-- End Weekly DA Approve Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+    </div><!-- End Page Title -->
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="alert alert-success">
+      {% for category, message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <section class="section dashboard">
+      <div class="row">
+
+        <div class="col-lg-12">
+          <div class="row">
+
+            <!-- Delivered Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">Delivered</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ card_data.delivered }}</h6>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Delivered Card -->
+
+            <!-- Delivery Attempt Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">Delivery Attempt</h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-truck"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ card_data.delivery_attempt }}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Delivery Attempt Card -->
+
+            <!-- Pickup Done Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Pickup Done</h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-box-seam"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ card_data.pickup_done }}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Pickup Done Card -->
+
+            <!-- MFN Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">MFN</h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-truck"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ card_data.mfn }}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End MFN Card -->
+
+            <!-- Reject Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Reject</h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-x-circle"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ card_data.reject }}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Reject Card -->
+
+            <!-- Volumetric Parcel Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Volumetric Parcel</h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-box"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ card_data.volumetric_parcel }}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Volumetric Parcel Card -->
+
+            <!-- Success Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Success Rate</h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ card_data.success_rate }}%</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Success Card -->
+
+            <!-- Total Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Total</h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-calculator"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ card_data.total }}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Total Card -->
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+  <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/assets/js/main.js"></script>
+</body>
+
+</html>
